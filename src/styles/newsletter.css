@@ -1,0 +1,49 @@
+.newsletter {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0dadaf5;
+}
+
+.newsletter_title {
+  font-size: 4.5rem;
+}
+
+.newsletter_desc {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+.newsletter_input_container {
+  width: 50%;
+  height: 40px;
+  background-color: gray;
+  display: flex;
+}
+
+.newsletter_input {
+  flex: 8;
+  padding-left: 1.25rem;
+  border: none;
+}
+
+.newsletter_button {
+  flex: 1;
+  background-color: teal;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 428px) {
+  .newsletter_desc {
+    text-align: center;
+  }
+
+  .newsletter_input_container {
+    width: 80%;
+  }
+}

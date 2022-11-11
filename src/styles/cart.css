@@ -1,0 +1,162 @@
+.cart_head-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.underscore {
+  width: 30px;
+  height: 3px;
+  border-radius: 4px;
+  background-color: black;
+  margin-top: 8px;
+}
+
+.cart_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 2rem;
+}
+
+.cart_container-wrapper {
+  width: 70%;
+  display: flex;
+}
+
+.item_container {
+  flex: 2;
+  padding: 0 1rem;
+}
+
+.item_card_top {
+  display: flex;
+}
+
+.item_image_container {
+  min-width: 175px;
+  height: 200px;
+}
+
+.item_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item_info_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.item_title {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.item_price {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.selected_item_color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: khaki;
+}
+
+.item_size_select {
+  width: 100px;
+}
+
+.item_quantity_container {
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.q_icon {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.item_quantity {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.item_remove {
+  font-size: 14px;
+  font-weight: 500;
+  color: gray;
+  cursor: pointer;
+}
+
+.summary_container {
+  height: 14rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+.summary_heading {
+  font-weight: 500;
+}
+
+.hr_line {
+  margin: 1rem 0;
+  border: 1px solid lightgray;
+}
+
+.price_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sub_price {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.total_price {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.checkout_button {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  font-weight: 500;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 428px) {
+  .cart_container-wrapper {
+    width: 100%;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .item_quantity_container {
+    margin-top: 4px;
+  }
+
+  .summary_container {
+    border: none;
+  }
+}

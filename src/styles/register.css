@@ -1,0 +1,76 @@
+.form-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://cdn.shopify.com/s/files/1/2445/7085/files/womens-organic-cotton-clothing-sustainable-fashion-brand_8479b722-e211-474b-b8df-e73e75d850f6.jpg?v=1614314581");
+  background-size: cover;
+}
+
+.register {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://img.freepik.com/free-photo/happy-woman-with-wavy-brown-hair-laughing-jocund-girl-striped-pink-attire-smiling_197531-9823.jpg?w=2000");
+  background-size: cover;
+}
+
+.card {
+  width: 24%;
+  padding: 2.5rem 1.5rem;
+  background-color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin: 0.5rem 0;
+  border-radius: 2px;
+}
+
+.input:focus {
+  border: 1px solid gray;
+  outline: none;
+}
+
+.agreement {
+  font-size: 12px;
+  margin: 1rem 0;
+  line-height: 1.4;
+}
+
+.link {
+  font-size: 12px;
+  margin: 0.5rem 0 1.2rem;
+  color: black;
+  cursor: pointer;
+}
+
+.btn_submit {
+  padding: 10px;
+  border: none;
+  background: teal;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 428px) {
+  .card {
+    width: 75%;
+  }
+}

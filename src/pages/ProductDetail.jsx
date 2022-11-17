@@ -1,39 +1,30 @@
 import "../styles/productdetail.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
-import api from "../api/api";
+import { useLocation } from "react-router-dom";
+import { Context } from "../context/AuthContext";
 
 function ProductDetail() {
-  const { id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState([]);
+  const { state: product } = useLocation();
   const [index, setIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState([product.colors[0]]);
+  const [size, setSize] = useState(product.sizes[0]);
+  const { addToCart } = Context();
 
-  useEffect(() => {
-    (async () => {
-      let unsubscribe = true;
+  const handleAddToCart = () => {
+    const item = {
+      productId: product._id,
+      color,
+      size,
+      quantity,
+    };
 
-      try {
-        const { data } = await api.get(`product/${id}`);
-        if (unsubscribe) {
-          setProduct(data);
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-
-      return () => {
-        unsubscribe = false;
-      };
-    })();
-  }, [id]);
-
-  if (loading) return null;
+    addToCart(item);
+  };
 
   return (
     <div className="product-detail">
@@ -59,7 +50,10 @@ function ProductDetail() {
                     className="colors"
                     key={color}
                     style={{ outline: index === i && "1px solid black" }}
-                    onClick={() => setIndex(i)}
+                    onClick={() => {
+                      setIndex(i);
+                      setColor(color);
+                    }}
                   >
                     {color}
                   </div>
@@ -67,7 +61,10 @@ function ProductDetail() {
               </div>
               <div className="product-detail_filter">
                 <span>Size:</span>
-                <select className="select">
+                <select
+                  className="select"
+                  onChange={(e) => setSize(e.target.value)}
+                >
                   {product?.sizes.map((size) => (
                     <option value={size} key={size} className="option">
                       {size}
@@ -78,11 +75,21 @@ function ProductDetail() {
             </div>
             <div className="product-detail_add">
               <div className="add_container">
-                <Remove className="icon" />
-                <p className="quantity">1</p>
-                <Add className="icon" />
+                <Remove
+                  className="icon"
+                  onClick={() =>
+                    quantity > 1 && setQuantity((preValue) => preValue - 1)
+                  }
+                />
+                <p className="quantity">{quantity}</p>
+                <Add
+                  className="icon"
+                  onClick={() => setQuantity((preValue) => preValue + 1)}
+                />
               </div>
-              <button className="btn_cart">Add to Cart</button>
+              <button className="btn_cart" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

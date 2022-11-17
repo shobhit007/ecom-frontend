@@ -3,8 +3,10 @@ import { SearchOutlined, ShoppingBagOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
+import { Context } from "../../context/AuthContext";
 
-function Navbar({ user, logout }) {
+function Navbar() {
+  const { cart, user, logout } = Context();
   const firstLetter = user && user.name.slice(0, 1).toUpperCase();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -21,8 +23,14 @@ function Navbar({ user, logout }) {
         <h1 className="logo">E-com shop</h1>
       </div>
       <div className="right">
-        <Badge badgeContent={0} color="primary" className="navbar-right_icon">
-          <ShoppingBagOutlined color="action" />
+        <Badge
+          badgeContent={cart && cart.length}
+          color="primary"
+          className="navbar-right_icon"
+        >
+          <Link to={user ? `/${user._id}/cart` : "/cart"}>
+            <ShoppingBagOutlined />
+          </Link>
         </Badge>
         {!user && (
           <Link to={"/user/login"} className="btn_login button">

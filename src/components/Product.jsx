@@ -1,24 +1,17 @@
 import "../styles/products.css";
-import {
-  ShoppingBagOutlined,
-  FavoriteBorderOutlined,
-} from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Product({ item }) {
+  const navigate = useNavigate();
   return (
     <div className="product">
       <img src={item.images[0]} alt="" className="product_image" />
-      <Link to={`/product/${item._id}`}>
-        <div className="product_info">
-          <div className="product_info_icon">
-            <ShoppingBagOutlined />
-          </div>
-          <div className="product_info_icon">
-            <FavoriteBorderOutlined />
-          </div>
-        </div>
-      </Link>
+      <div
+        className="product_info"
+        onClick={() => navigate(`/product/${item._id}`, { state: item })}
+      >
+        <h3 style={{ color: "white" }}>{item.title}</h3>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = Context();
+  const { login, updateUser } = Context();
   const navigate = useNavigate();
 
   async function onSubmitLogin() {
@@ -14,7 +14,8 @@ function Login() {
       const response = await login(email, password);
       const { token } = response.data;
       localStorage.setItem("token", token);
-      navigate("/");
+      updateUser();
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
     }

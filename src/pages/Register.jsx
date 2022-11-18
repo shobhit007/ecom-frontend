@@ -1,12 +1,26 @@
 import "../styles/register.css";
 import { useState } from "react";
 import { Context } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register } = Context();
+  const { register, updateUser } = Context();
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    try {
+      const { data } = await register(name, email, password);
+      const { token } = data;
+      localStorage.setItem("token", token);
+      updateUser();
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="form-container register">
@@ -37,10 +51,7 @@ function Register() {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>Privacy Policy</b>.
           </span>
-          <button
-            className="btn_submit"
-            onClick={() => register(name, email, password)}
-          >
+          <button className="btn_submit" onClick={handleRegister}>
             REGISTER
           </button>
         </div>

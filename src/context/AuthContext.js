@@ -46,22 +46,12 @@ export const Provider = ({ children }) => {
   }, [user]);
 
   //register a new user
-  const register = async (name, email, password) => {
-    try {
-      const response = await api.post("/auth/register", {
-        name,
-        email,
-        password,
-      });
-      const { token } = response.data;
-      if (token) {
-        localStorage.setItem("token", token);
-        const user = await api.get("/user");
-        if (user) setUser(user.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const register = (name, email, password) => {
+    return api.post("/auth/register", {
+      name,
+      email,
+      password,
+    });
   };
   //login user
   const login = (email, password) => {
@@ -72,6 +62,16 @@ export const Provider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+  };
+
+  //update user state
+  const updateUser = async () => {
+    try {
+      const { data } = await api.get("/user");
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //add to cart
@@ -131,6 +131,7 @@ export const Provider = ({ children }) => {
     updateCartItemQuantity,
     removeItemFromCart,
     checkoutOrder,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
